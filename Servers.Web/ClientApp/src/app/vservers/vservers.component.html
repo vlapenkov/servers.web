@@ -1,0 +1,33 @@
+<h1>This component demonstrates remote servers</h1>
+<app-tablo></app-tablo>
+<pre>{{serverIds|json}}</pre>
+
+<button class="btn btn-primary" type="button" (click)="addServer()">Add</button>
+<button *ngIf="serverIds.length" class="btn btn-primary" type="button" (click)="removeServers()">Remove</button>
+<div *ngIf="data$ | async as data; else loading">
+    <table class='table table-striped' *ngIf="data">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Created</th>
+                <th>Removed</th>
+              <th>SelectForRemove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vserver of data">
+                <td>{{ vserver.id }}</td>
+                <td>{{ vserver.createDateTime| date:'dd.MM.yyyy h:mm:ss'}}</td>
+                <td>{{ vserver.removeDateTime |date:'dd.MM.yyyy h:mm:ss'}}</td>
+              <td>
+                
+                <input *ngIf="!vserver.removeDateTime" class="btn btn-primary" type="checkbox" (click)="selectForRemove(vserver.id)"/>
+              </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <ng-template #loading>
+        Loading stuff...
+    </ng-template>
