@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Servers.Web.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class TabloController : ControllerBase
