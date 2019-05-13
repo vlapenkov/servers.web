@@ -27,9 +27,9 @@ namespace Servers.Web.Controllers
 
         // GET: api/VServers/5
         [HttpGet("{id}", Name = "Get")]
-        public VServer Get(int id)
+        public async Task<VServer> Get(int id)
         {
-            return _dbContext.VServers.FirstOrDefault(p=>p.Id==id);
+            return await  _dbContext.VServers.FirstOrDefaultAsync(p=>p.Id==id);
         }
 
         // POST: api/VServers
@@ -56,7 +56,7 @@ namespace Servers.Web.Controllers
         public async Task<IActionResult> Delete([FromQuery] int[] id)
         {
             
-            var serversFound =  _dbContext.VServers.Where(p=>id.Contains(p.Id)).ToArray();
+            var serversFound = await _dbContext.VServers.Where(p=>id.Contains(p.Id)).ToArrayAsync();
             if (serversFound == null)
             {
                 return NotFound();
