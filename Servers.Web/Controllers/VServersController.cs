@@ -19,7 +19,7 @@ namespace Servers.Web.Controllers
         }
         // GET: api/VServers
         [HttpGet]
-        public IQueryable Get()
+        public IQueryable<VServer> Get()
         {
             return _dbContext.VServers.AsNoTracking();
             
